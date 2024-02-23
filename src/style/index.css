@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.userInput {
+    @apply my-2 border p-2 rounded outline-none ring-1 ring-gray-300 focus:ring-orange-500 duration-200
+}

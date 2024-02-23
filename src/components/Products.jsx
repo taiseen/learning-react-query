@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import { getAllProducts } from '../api';
 import Product from './Product';
 
-const Products = ({ setProductId }) => {
+const Products = ({ setProductId, setEditProduct }) => {
 
     // 🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴
     // for data fetching form server we do not use any useEffect...
@@ -11,6 +12,8 @@ const Products = ({ setProductId }) => {
     // so this react-query lib ==> give us a hook called -> useQuery() hook
     // by using we leverage all its state management features...
     // 🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴
+
+    const [page, setPage] = useState(1);
 
     const { data, error, isLoading } = useQuery({
         queryKey: ['products'], // 🟩 for cashing purpose - set a key, try to same name as api endpoint
@@ -36,8 +39,9 @@ const Products = ({ setProductId }) => {
                             item={item}
                             key={item.id}
                             setProductId={setProductId}
+                            setEditProduct={setEditProduct}
                         />
-                    )
+                    ).reverse()
                 }
             </ul>
         </div>

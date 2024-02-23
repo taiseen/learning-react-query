@@ -5,11 +5,12 @@ import { useState } from "react";
 
 const App = () => {
   const [productId, setProductId] = useState(1);
+  const [editProduct, setEditProduct] = useState({});
 
   return (
     <div className="flex">
-      <ProductAdd />
-      <Products setProductId={setProductId} />
+      <ProductAdd editProductInfo={editProduct} />
+      <Products setProductId={setProductId} setEditProduct={setEditProduct} />
       <ProductDetails id={productId} />
     </div>
   )
