@@ -24,5 +24,10 @@ yarn dev
 ### Client side setup
 
 - 1st - `react-query`
+
   - by Context api setup style - implement react-query at root level of app
   - setup browser dev tools for debugging
+
+- 2nd - `useQuery` hook
+  - for get data form server use this `useQuery` hook
+  - pass fetching function inside its as value of `queryFu` property

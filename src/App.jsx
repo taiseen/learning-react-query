@@ -1,8 +1,17 @@
+import ProductDetails from "./components/ProductDetails";
+import ProductAdd from "./components/ProductAdd";
+import Products from "./components/Products";
+import { useState } from "react";
+
 const App = () => {
+  const [productId, setProductId] = useState(1);
+
   return (
-    <h1 className="text-3xl font-bold underline text-center mt-5">
-      React Query
-    </h1>
+    <div className="flex">
+      <ProductAdd />
+      <Products setProductId={setProductId} />
+      <ProductDetails id={productId} />
+    </div>
   )
 }
 

@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import React from "react";
@@ -10,6 +11,16 @@ const reactRoot = ReactDOM.createRoot(htmlRoot);
 
 // crate a instance from QueryClient() for sharing at whole application
 const queryClient = new QueryClient();
+
+// 🟩 Global level react-query parameter settings apply here...
+// 🟩 or centralized management system apply from here...
+// const queryClient = new QueryClient({
+//   defaultOptions: {
+//     queries: {
+//       staleTime: 1000 * 5 // Infinity
+//     }
+//   }
+// });
 
 reactRoot.render(
   <React.StrictMode>
