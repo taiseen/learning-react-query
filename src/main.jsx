@@ -1,8 +1,11 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import React from "react";
+import ReactDOM from "react-dom/client";
+import { ToastContainer } from "react-toastify";
+import App from "./App.jsx";
+
+import "react-toastify/dist/ReactToastify.css";
 import "./style/index.css";
 
 const htmlRoot = document.getElementById("root");
@@ -31,6 +34,8 @@ reactRoot.render(
       {/* for dev tool at browser */}
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
+
+    <ToastContainer theme="colored" position="top-right" autoClose={5000} />
 
   </React.StrictMode>
 );

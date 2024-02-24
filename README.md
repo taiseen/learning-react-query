@@ -18,6 +18,8 @@ yarn dev
 
 - yarn add axios
 - yarn add json-server
+- yarn add react-toastify
+- yarn add react-hook-form
 - yarn add @tanstack/react-query
 - yarn add @tanstack/react-query-devtools
 

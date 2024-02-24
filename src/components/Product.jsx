@@ -5,6 +5,7 @@ const Product = ({ item, setProductId, setEditProduct }) => {
 
     const cache = useQueryClient();
 
+    // for data ❌ Delete functionality...
     const { mutate } = useMutation({
         mutationFn: (id) => productDeleteById(id),
         onSuccess: () => {

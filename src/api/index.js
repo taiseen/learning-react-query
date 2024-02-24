@@ -8,6 +8,12 @@ export const getAllProducts = async ({ queryKey }) => {
     return response.data;
 }
 
+export const getPaginatedProducts = async ({ queryKey }) => {
+    const response = await api.get(`${queryKey[0]}?_page=${queryKey[1].page}&_per_page=6`);
+    return response.data;
+}
+
+
 export const getProductById = async ({ queryKey }) => {
     const response = await api.get(`${queryKey[0]}/${queryKey[1]}`);
     return response.data;

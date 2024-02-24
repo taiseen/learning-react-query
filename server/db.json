@@ -2,7 +2,7 @@
   "products": [
     {
       "id": "1",
-      "title": "iPhone 9",
+      "title": "iPhone 999",
       "description": "An apple mobile which is nothing like apple",
       "price": 549,
       "rating": 4.69,
@@ -236,7 +236,7 @@
       "id": "30",
       "title": "Key Holder",
       "description": "Attractive DesignMetallic materialFour key hooksReliable & DurablePremium Quality",
-      "price": 180,
+      "price": 30,
       "rating": 4.92,
       "thumbnail": "https://cdn.dummyjson.com/product-images/30/thumbnail.jpg"
     },
@@ -250,9 +250,9 @@
     },
     {
       "id": "3dbb3096-f2ef-4815-8653-d6c4a2965dbe",
-      "title": "Sofa",
-      "description": "Cozy Black sofa",
-      "price": 1540,
+      "title": "Bed",
+      "description": "Cozy Bed",
+      "price": 1000,
       "rating": 5,
       "thumbnail": "https://cdn.dummyjson.com/product-images/32/thumbnail.jpg"
     }
