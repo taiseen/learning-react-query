@@ -24,9 +24,16 @@ const Products = ({ setProductId, setEditProduct }) => {
         // queryFn: getAllProducts, // 🟩 for data fetching - pass a function & its auto pass/set a parameter
 
         // retry: false, // 🟩 no auto network request | by default 3 times...
+        
         // staleTime: 5000 // 🟩 do not make this data old, until 5 second cross...
         // 🟩 if in server change any data, this staleTime property always listing for new changed data
+        
         // refetchInterval: 5000 // 🟩 in every 5 second re-fetch data
+
+        // placeholderData: keepPreviousData 
+        // until new data is available, old data will be hold the UI, so that ui do not break its beauty...
+
+
     });
 
     const commonClass = 'w-3/5 h-screen text-5xl grid place-items-center';

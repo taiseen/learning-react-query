@@ -1,18 +1,35 @@
-import ProductDetails from "./components/ProductDetails";
-import ProductAdd from "./components/ProductAdd";
-import Products from "./components/Products";
-import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Suspense } from "react";
+
+import ProjectProducts from "./projects/lws-products";
+import Layout from "./layout";
+import Home from "./home";
+
 
 const App = () => {
-  const [productId, setProductId] = useState(1);
-  const [editProduct, setEditProduct] = useState({});
+
+  const Loading = () => (
+    <div className="h-screen bg-gray-700 flex items-center justify-center text-3xl">
+      Loading...
+    </div>
+  )
 
   return (
-    <div className="flex">
-      <ProductAdd editProductInfo={editProduct} />
-      <Products setProductId={setProductId} setEditProduct={setEditProduct} />
-      <ProductDetails id={productId} />
-    </div>
+    <Suspense fallback={<Loading />}>
+
+      <BrowserRouter>
+        <Routes>
+
+          <Route path={'/'} element={<Home />} exact />
+
+          <Route element={<Layout />}>
+            <Route path={'/lws-products'} element={<ProjectProducts />} />
+          </Route>
+
+        </Routes>
+      </BrowserRouter>
+
+    </Suspense>
   )
 }
 
