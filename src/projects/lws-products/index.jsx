@@ -5,7 +5,7 @@ import { useState } from "react";
 import "./style/index.css";
 
 
-const ProjectProducts = () => {
+const LwsProducts = () => {
 
     const [productId, setProductId] = useState(1);
     const [editProduct, setEditProduct] = useState({});
@@ -20,4 +20,4 @@ const ProjectProducts = () => {
 }
 
 
-export default ProjectProducts
+export default LwsProducts

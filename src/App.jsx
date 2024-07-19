@@ -1,11 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Suspense } from "react";
 
-import AddProduct from "./projects/coder-gayn/products/AddProduct";
-import CGProduct from "./projects/coder-gayn/products/CGProduct";
-import CGProducts from "./projects/coder-gayn/products";
-import ProjectProducts from "./projects/lws-products";
 import Layout from "./layout";
+import routes from "./routes";
 import Home from "./home";
 
 
@@ -26,10 +23,15 @@ const App = () => {
           <Route path={'/'} element={<Home />} exact />
 
           <Route element={<Layout />}>
-            <Route path={'/lws-products'} element={<ProjectProducts />} />
-            <Route path={'/coders-gayn-products'} element={<CGProducts />} />
-            <Route path={'/coders-gayn-products/:id'} element={<CGProduct />} />
-            <Route path={'/coders-gayn-products/add'} element={<AddProduct />} />
+            {
+              routes.map(obj => (
+                <Route
+                  key={obj.path}
+                  path={obj.path}
+                  element={<obj.component />}
+                />
+              ))
+            }
           </Route>
 
         </Routes>
