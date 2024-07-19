@@ -1,0 +1,7 @@
+.dataFetchingStatus {
+    @apply h-screen grid place-items-center text-6xl;
+}
+
+.dataFetchStatus {
+    @apply h-screen grid place-items-center text-6xl bg-gray-400;
+}
