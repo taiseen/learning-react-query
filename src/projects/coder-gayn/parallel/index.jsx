@@ -1,4 +1,4 @@
-import useScrollToBottom from "../../hook/useScrollToBottom";
+import useScrollToBottom from "../hook/useScrollToBottom";
 import { useParallelQuery } from "../apiServices";
 import { useState } from "react"
 
