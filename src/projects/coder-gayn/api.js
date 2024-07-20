@@ -30,3 +30,29 @@ export const addProduct = async (newObj) => {
 
 // 🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
 // 🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+
+
+export const getPaginatedProducts = async ({ queryKey }) => {
+
+    const apiEndpoint = queryKey[0];
+    const limit = queryKey[1];
+    const skip = queryKey[2];
+    const search = queryKey[3];
+    const category = queryKey[4];
+
+    let url;
+    if (search) {
+        url = `${apiEndpoint}/search?limit=${limit}&skip=${skip}q=${search}`
+    } else if (category) {
+        url = `${apiEndpoint}/category/${category}?limit=${limit}&skip=${skip}`
+    } else {
+        url = `${apiEndpoint}?limit=${limit}&skip=${skip}`;
+    }
+
+    const response = await api.get(url);
+    return response.data;
+}
+
+
+// 🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+// 🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐

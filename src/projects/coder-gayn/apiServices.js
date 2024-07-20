@@ -1,5 +1,5 @@
-import { addProduct, getAllProducts, getProductByIs, productApiEndpoint } from './api';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { addProduct, getAllProducts, getPaginatedProducts, getProductByIs, productApiEndpoint } from './api';
+import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query';
 
 
 
@@ -34,3 +34,22 @@ export const useAddProduct = () => {
 
 // ⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️
 // ⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️
+
+
+// pagination + searching + filtering...
+
+export const usePaginatedProducts = (limit, skip, searching, category) => {
+
+    return useQuery({
+        queryKey: [productApiEndpoint, limit, skip, searching, category],
+        queryFn: getPaginatedProducts, // api calling function... 
+        placeholderData: keepPreviousData, // hold old data until new data comes...
+        staleTime: 1000 * 60, // data cache for 1min 
+    });
+}
+
+
+// ⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️
+// ⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️
+
+
