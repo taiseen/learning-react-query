@@ -1,5 +1,5 @@
-import { addProduct, getAllProducts, getPaginatedProducts, getProductByIs, productApiEndpoint } from './api';
-import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query';
+import { addProduct, getAllProducts, getPaginatedProducts, getProductById, productApiEndpoint } from './api';
+import { keepPreviousData, useMutation, useQueries, useQuery, useQueryClient } from '@tanstack/react-query';
 
 
 
@@ -21,7 +21,7 @@ export const useGetAllProduct = () => {
 export const useGetProductById = (id) => {
     return useQuery({
         queryKey: [productApiEndpoint, id],
-        queryFn: getProductByIs,
+        queryFn: getProductById,
     });
 }
 
@@ -52,4 +52,45 @@ export const usePaginatedProducts = (limit, skip, searching, category) => {
 // ⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️
 // ⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️
 
+
+// parallel query || dynamic query
+
+export const useParallelQuery = (productIds) => {
+
+    return useQueries({
+        queries: productIds.map(id => {
+            return {
+                queryKey: [productApiEndpoint, id],
+                queryFn: getProductById, // api calling function... 
+            }
+        })
+    });
+}
+
+
+// ⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️
+// ⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️
+
+
+
+export const useGetOptimisticProduct = () => {
+    return useQuery({
+        queryKey: [productApiEndpoint],
+        queryFn: getAllProducts,
+    });
+}
+
+
+export const useAddOptimisticProduct = () => {
+
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: addProduct,
+
+        onSuccess: async () => {
+            return await queryClient.invalidateQueries({ queryKey: [productApiEndpoint] });
+        },
+    });
+}
 

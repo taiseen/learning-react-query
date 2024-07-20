@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const api = axios.create({ baseURL: 'https://dummyjson.com/' });
+const baseURL = 'http://localhost:8000/';
+// const baseURL = 'https://dummyjson.com/';
+
+const api = axios.create({ baseURL });
 
 export const productApiEndpoint = 'products';
 
@@ -16,8 +19,12 @@ export const getAllProducts = async ({ queryKey }) => {
 }
 
 
-export const getProductByIs = async ({ queryKey }) => {
-    const response = await api.get(queryKey[0] + '/' + queryKey[1]);
+export const getProductById = async ({ queryKey }) => {
+    
+    const apiEndpoint = queryKey[0];
+    const id = queryKey[1];
+
+    const response = await api.get(apiEndpoint + '/' + id);
     return response.data;
 }
 

@@ -1,8 +1,10 @@
 import AddProduct from "../projects/coder-gayn/products/AddProduct";
+// import CGOptimistic from "../projects/coder-gayn/optimistic/indes";
 import CGProduct from "../projects/coder-gayn/products/CGProduct";
+import CGParallelQuery from "../projects/coder-gayn/parallel";
+import CGPaginated from "../projects/coder-gayn/paginated";
 import CGProducts from "../projects/coder-gayn/products";
 import LwsProducts from "../projects/lws-products";
-import CGPaginated from "../projects/coder-gayn/paginated";
 
 // const LwsProducts = lazy( async () => import("../projects/lws-products"));
 
@@ -32,7 +34,16 @@ const routes = [
         title: 'CG - Paginated Product',
         component: CGPaginated,
     },
-
+    {
+        path: '/coders-gayn-products/parallel',
+        title: 'CG - Parallel Query',
+        component: CGParallelQuery,
+    },
+    // {
+    //     path: '/coders-gayn-products/optimistic',
+    //     title: 'CG - Optimistic Update',
+    //     component: CGOptimistic,
+    // },
 ]
 
 export default routes;
