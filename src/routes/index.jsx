@@ -1,5 +1,5 @@
 import AddProduct from "../projects/coder-gayn/products/AddProduct";
-// import CGOptimistic from "../projects/coder-gayn/optimistic/indes";
+import CGOptimistic from "../projects/coder-gayn/optimistic/indes";
 import CGProduct from "../projects/coder-gayn/products/CGProduct";
 import CGParallelQuery from "../projects/coder-gayn/parallel";
 import CGPaginated from "../projects/coder-gayn/paginated";
@@ -39,11 +39,11 @@ const routes = [
         title: 'CG - Parallel Query',
         component: CGParallelQuery,
     },
-    // {
-    //     path: '/coders-gayn-products/optimistic',
-    //     title: 'CG - Optimistic Update',
-    //     component: CGOptimistic,
-    // },
+    {
+        path: '/coders-gayn-products/optimistic',
+        title: 'CG - Optimistic Update',
+        component: CGOptimistic,
+    },
 ]
 
 export default routes;

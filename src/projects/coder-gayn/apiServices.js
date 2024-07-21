@@ -77,6 +77,7 @@ export const useGetOptimisticProduct = () => {
     return useQuery({
         queryKey: [productApiEndpoint],
         queryFn: getAllProducts,
+        // staleTime: 1000 * 30, // auto refetch after 30 seconds...
     });
 }
 
@@ -89,6 +90,7 @@ export const useAddOptimisticProduct = () => {
         mutationFn: addProduct,
 
         onSuccess: async () => {
+            // rerender ui component for get all latest product data...
             return await queryClient.invalidateQueries({ queryKey: [productApiEndpoint] });
         },
     });
