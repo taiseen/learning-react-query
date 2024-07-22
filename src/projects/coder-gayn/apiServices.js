@@ -1,6 +1,9 @@
-import { addProduct, getAllProducts, getPaginatedProducts, getProductById, productApiEndpoint } from './api';
 import { keepPreviousData, useMutation, useQueries, useQuery, useQueryClient } from '@tanstack/react-query';
-
+import {
+    addOptimisticProduct, addProduct, commentsApiEndpoint, fewProductsApiEndpoint,
+    getAllProducts, getPaginatedProducts, getPostById, getPostCommentsById,
+    getProductById, postsApiEndpoint, productApiEndpoint
+} from './api';
 
 
 // ⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️
@@ -12,8 +15,8 @@ export const useGetAllProduct = () => {
     return useQuery({
         queryKey: [productApiEndpoint],
         queryFn: getAllProducts,
-        refetchOnWindowFocus: false,
-        staleTime: 1000 * 60 * 60,
+        refetchOnWindowFocus: false, // 🟢🟢🟢
+        staleTime: 1000 * 60 * 60,   // 🟢🟢🟢
     });
 }
 
@@ -36,15 +39,17 @@ export const useAddProduct = () => {
 // ⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️
 
 
-// pagination + searching + filtering...
+// 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
+// 🟩 pagination + searching + filtering...  
+// 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 
 export const usePaginatedProducts = (limit, skip, searching, category) => {
 
     return useQuery({
         queryKey: [productApiEndpoint, limit, skip, searching, category],
         queryFn: getPaginatedProducts, // api calling function... 
-        placeholderData: keepPreviousData, // hold old data until new data comes...
-        staleTime: 1000 * 60, // data cache for 1min 
+        placeholderData: keepPreviousData, // hold old data until new data comes... 🟢🟢🟢
+        staleTime: 1000 * 60, // data cache for 1min 🟢🟢🟢
     });
 }
 
@@ -53,7 +58,9 @@ export const usePaginatedProducts = (limit, skip, searching, category) => {
 // ⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️
 
 
-// parallel query || dynamic query
+// 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
+// 🟩 parallel query || dynamic query 
+// 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 
 export const useParallelQuery = (productIds) => {
 
@@ -71,11 +78,13 @@ export const useParallelQuery = (productIds) => {
 // ⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️
 // ⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️
 
-
+// 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
+// 🟩 optimistic ui update 
+// 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 
 export const useGetOptimisticProduct = () => {
     return useQuery({
-        queryKey: [productApiEndpoint],
+        queryKey: [fewProductsApiEndpoint],
         queryFn: getAllProducts,
         // staleTime: 1000 * 30, // auto refetch after 30 seconds...
     });
@@ -87,12 +96,42 @@ export const useAddOptimisticProduct = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: addProduct,
+        mutationFn: addOptimisticProduct,
 
         onSuccess: async () => {
             // rerender ui component for get all latest product data...
-            return await queryClient.invalidateQueries({ queryKey: [productApiEndpoint] });
+            return await queryClient.invalidateQueries({ queryKey: [fewProductsApiEndpoint] });
         },
     });
 }
+
+
+// ⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️
+// ⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️
+
+
+// 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
+// 🟩 optimistic ui update 🟩
+// 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
+
+export const useGetPostById = (postId) => {
+
+    return useQuery({
+        queryKey: [postsApiEndpoint, postId],
+        queryFn: getPostById,
+        refetchOnWindowFocus: false, // 🟢🟢🟢
+    });
+}
+
+
+export const useGetCommentsByPostId = (commentId) => {
+
+    return useQuery({
+        queryKey: [commentsApiEndpoint, commentId],
+        queryFn: getPostCommentsById,
+        refetchOnWindowFocus: false, // 🟢🟢🟢
+        enabled: !!commentId, // dependent get query... 🟢🟢🟢
+    });
+}
+
 

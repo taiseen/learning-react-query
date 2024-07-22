@@ -3,6 +3,7 @@ import CGOptimistic from "../projects/coder-gayn/optimistic/indes";
 import CGProduct from "../projects/coder-gayn/products/CGProduct";
 import CGParallelQuery from "../projects/coder-gayn/parallel";
 import CGPaginated from "../projects/coder-gayn/paginated";
+import CGDependent from "../projects/coder-gayn/dependent";
 import CGProducts from "../projects/coder-gayn/products";
 import LwsProducts from "../projects/lws-products";
 
@@ -44,6 +45,11 @@ const routes = [
         title: 'CG - Optimistic Update',
         component: CGOptimistic,
     },
+    {
+        path: '/coders-gayn-products/dependent',
+        title: 'CG - Dependent query',
+        component: CGDependent,
+    },    
 ]
 
 export default routes;

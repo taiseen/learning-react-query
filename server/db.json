@@ -263,5 +263,73 @@
       "price": "100",
       "thumbnail": "www.img.com/img.jpg"
     }
+  ],
+  "fewProducts": [
+    {
+      "id": "1",
+      "title": "iPhone 999",
+      "description": "An apple mobile which is nothing like apple",
+      "price": 549,
+      "rating": 4.69,
+      "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
+    },
+    {
+      "id": "2",
+      "title": "iPhone X",
+      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+      "price": 899,
+      "rating": 4.44,
+      "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+    },
+    {
+      "id": "3",
+      "title": "Samsung Universe 9",
+      "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+      "price": 1249,
+      "rating": 4.09,
+      "thumbnail": "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg"
+    }
+  ],
+  "posts": [
+    {
+      "id": "p1",
+      "title": "React query is use for server-side data fetching efficient way",
+      "commentId": "c1"
+    },
+    {
+      "id": "p2",
+      "title": "CSS3",
+      "commentId": "c2"
+    }
+  ],
+  "comments": [
+    {
+      "id": "c1",
+      "postId": "p1",
+      "comments": [
+        {
+          "id": 1,
+          "title": "Async away to manage data fetching from server"
+        },
+        {
+          "id": 2,
+          "title": "Optimistic way to update ui"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "postId": "p80",
+      "comments": [
+        {
+          "id": 1,
+          "title": "Css is awesome"
+        },
+        {
+          "id": 2,
+          "title": "beautify the ui"
+        }
+      ]
+    }
   ]
 }

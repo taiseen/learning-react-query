@@ -5,7 +5,11 @@ const baseURL = 'http://localhost:8000/';
 
 const api = axios.create({ baseURL });
 
+export const fewProductsApiEndpoint = 'fewProducts';
+export const commentsApiEndpoint = 'comments';
 export const productApiEndpoint = 'products';
+export const postsApiEndpoint = 'posts';
+
 
 
 // 🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
@@ -20,7 +24,7 @@ export const getAllProducts = async ({ queryKey }) => {
 
 
 export const getProductById = async ({ queryKey }) => {
-    
+
     const apiEndpoint = queryKey[0];
     const id = queryKey[1];
 
@@ -63,3 +67,29 @@ export const getPaginatedProducts = async ({ queryKey }) => {
 
 // 🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
 // 🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+
+
+export const addOptimisticProduct = async (newObj) => {
+    const response = await api.post(fewProductsApiEndpoint, newObj);
+    return response.data;
+}
+
+
+// 🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+// 🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐🌐
+
+export const getPostById = async ({ queryKey }) => {
+    const apiEndpoint = queryKey[0];
+    const id = queryKey[1];
+
+    const response = await api.get(apiEndpoint + '/' + id);
+    return response.data;
+}
+
+export const getPostCommentsById = async ({ queryKey }) => {
+    const apiEndpoint = queryKey[0];
+    const id = queryKey[1];
+
+    const response = await api.get(apiEndpoint + '/' + id);
+    return response.data;
+}
