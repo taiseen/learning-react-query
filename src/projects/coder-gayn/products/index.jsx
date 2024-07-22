@@ -13,7 +13,6 @@ const CGProducts = () => {
 
 
     if (isLoading) return <div className='dataFetchingStatus'>Loading...</div>;
-
     if (error) return <div className='dataFetchingStatus'>Error: {error.message}</div>;
 
 
@@ -30,7 +29,7 @@ const CGProducts = () => {
                         // 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑
                         // for preventing undefined, to break the ui, use optional chaining
                         // 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑
-                        data?.products?.map((product) => (
+                        data?.map((product) => (
                             <div key={product.id} className="group relative">
 
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
