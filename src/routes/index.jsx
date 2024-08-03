@@ -5,6 +5,7 @@ import CGParallelQuery from "../projects/coder-gayn/parallel";
 import CGPaginated from "../projects/coder-gayn/paginated";
 import CGDependent from "../projects/coder-gayn/dependent";
 import CGProducts from "../projects/coder-gayn/products";
+import InfiniteScroll from "../projects/infinite-scroll";
 import LwsProducts from "../projects/lws-products";
 
 // const LwsProducts = lazy( async () => import("../projects/lws-products"));
@@ -49,6 +50,11 @@ const routes = [
         path: '/coders-gayn-products/dependent',
         title: 'CG - Dependent query',
         component: CGDependent,
+    },  
+    {
+        path: '/infinite-scroll',
+        title: 'Infinite Scroll',
+        component: InfiniteScroll,
     },    
 ]
 
