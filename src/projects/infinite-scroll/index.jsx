@@ -1,7 +1,9 @@
 import { useInView } from "react-intersection-observer";
 import { useInfiniteScroll } from "./apiService";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import Todo from "./Todo";
+
 
 
 const InfiniteScroll = () => {
@@ -9,6 +11,8 @@ const InfiniteScroll = () => {
     const apiEndpoint = 'todos';
 
     const { ref, inView } = useInView();
+
+    const [isReverseScrolling, setIsReverseScrolling] = useState(false);
 
     const {
         isLoading, isError, isFetchingNextPage, hasNextPage,
@@ -18,11 +22,17 @@ const InfiniteScroll = () => {
     const isBtnDisabled = isFetchingNextPage || !hasNextPage;
 
 
+    // infinite scrolling time - fire this function automatically...
     useEffect(() => {
-        // infinite scrolling time - fire this function automatically...
-
         if (inView && hasNextPage) { fetchNextPage(); }
     }, [inView, hasNextPage, fetchNextPage]);
+
+
+    useEffect(() => {
+        isReverseScrolling
+            ? toast.success(`Scrolling Up... ⬆️`)
+            : toast.success(`Scrolling Down... ⬇️`)
+    }, [isReverseScrolling])
 
 
     if (isLoading) {
@@ -51,11 +61,37 @@ const InfiniteScroll = () => {
     return (
         <div className="bg-slate-800 h-screen">
 
-            <p className="text-center text-2xl text-white py-4">
-                Infinite Scroll by React Query...
-            </p>
+            <header className="w-[680px] mx-auto flex items-center justify-between">
+                <p className="text-center text-2xl text-white py-4">
+                    Infinite Scroll by React Query...
+                </p>
 
-            <div className="w-[680px] h-[580px] mx-auto border rounded-sm p-3 flex flex-col gap-4 overflow-y-auto bg-slate-500">
+                <div className="flex gap-2 items-center ">
+                    <label
+                        htmlFor="isReverse"
+                        className="cursor-pointer text-yellow-400"
+                    >
+                        Reverse Scrolling
+                    </label>
+
+                    <input
+                        id="isReverse"
+                        type="checkbox"
+                        className="cursor-pointer size-5"
+                        checked={isReverseScrolling}
+                        onChange={() => setIsReverseScrolling(pre => !pre)}
+                    />
+                </div>
+            </header>
+
+            <section
+                style={{
+                    flexDirection: isReverseScrolling
+                        ? 'column-reverse'
+                        : 'column'
+                }}
+                className="w-[680px] h-[580px] mx-auto border rounded-sm p-3 flex flex-col-reverse gap-4 overflow-y-auto bg-slate-500"
+            >
 
                 {allTodo}
 
@@ -80,7 +116,7 @@ const InfiniteScroll = () => {
                 {/* Responsible for - Infinite Scroll */}
                 <div ref={ref} />
 
-            </div>
+            </section>
 
         </div>
     )
